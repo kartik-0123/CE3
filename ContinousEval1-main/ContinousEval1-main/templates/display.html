@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Entries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #2196F3 0%, #2196F3 70%, #9c27b0 100%);
+            min-height: 100vh;
+            padding: 30px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .feedback-entry {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feedback-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .rating {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .rating-good {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .rating-average {
+            background-color: #FFC107;
+            color: black;
+        }
+        
+        .rating-bad {
+            background-color: #F44336;
+            color: white;
+        }
+        
+        .message-content {
+            line-height: 1.5;
+        }
+        
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 10px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        .no-feedback {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Feedback Entries</h1>
+        <div id="feedback-container">
+            <!-- Feedback entries will be dynamically inserted here -->
+        </div>
+        <a href="{{ url_for('home') }}" class="back-btn">Back to Form</a>
+    </div>
+
+    <script>
+        // Load feedback entries from localStorage and display them
+        document.addEventListener('DOMContentLoaded', function() {
+            const feedbackContainer = document.getElementById('feedback-container');
+            const feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+            
+            if (feedbacks.length === 0) {
+                feedbackContainer.innerHTML = '<div class="no-feedback">No feedback entries yet.</div>';
+                return;
+            }
+            
+            // Display each feedback entry
+            feedbacks.forEach(feedback => {
+                const ratingClass = feedback.rating === 'Good' ? 'rating-good' : 
+                                   feedback.rating === 'Average' ? 'rating-average' : 'rating-bad';
+                
+                const feedbackHtml = `
+                    <div class="feedback-entry">
+                        <div class="feedback-header">
+                            <div class="user-info">
+                                <h3>${feedback.fullName}</h3>
+                                <p>Email: ${feedback.email}</p>
+                                <p>Age: ${feedback.age} | Phone: ${feedback.phone}</p>
+                            </div>
+                            <div>
+                                <span class="rating ${ratingClass}">${feedback.rating}</span>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <p>${feedback.message}</p>
+                        </div>
+                    </div>
+                `;
+                
+                feedbackContainer.innerHTML += feedbackHtml;
+            });
+        });
+
+   
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Categories</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        h1 span {
+            background: linear-gradient(45deg, #a855f7, #ec4899, #f43f5e);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: inherit;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 1rem;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Specific background colors for each card */
+        .art { background-color: yellow; }
+        .stickers { background-color: #f8b195; }
+        .wallpaper { background-color: #d9ed92; }
+        .poster { background-color: red; }
+        .tshirt { background-color: #e9c0fa; }
+        .monogram { background-color: #1a1a1a; color: white; }
+        .social { background-color: #98d8e1; }
+        .social2 { background-color: green; }
+        .small-logo {
+    height: 40%; /* Reduce logo size */
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.card-image {
+    width: 100%;
+    height: 80%; /* Ensures uniform card height */
+    object-fit: cover;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose <span>anything</span> like a pro</h1>
+        
+        <div class="cards-container">
+            <a href="{% url 'cart1' %}" class="card">
+                <img src="https://www.iitg.ac.in/chemeng/chem_engg_ppf/assets/img/hero-img.png" alt="Portrait art" class="card-image small-logo">
+                <div class="card-content art">
+                    <h2 class="card-title">Engineering- IIT JEE</h2>
+                </div>
+            </a>
+            
+            <a href="{% url 'cart1' %}" class="card">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAACMCAMAAABmmcPHAAAAqFBMVEX///8AAIAAAHYAAHUAAHkAAH0AAIEAAHL9/f/5+f3s7PXU1Ofn5/Lr6/T09Prg4O7a2urLy+G6utdvb6tbW6Gurs8jI4krK4zGxt7R0eVGRpepqcy3t9UAAGybm8STk7+GhrhlZaZ/f7SLi7qhochTU50xMY4aGoY7O5Jpaah1da5MTJpAQJQ0NI8UFIQlJYpWVp0AAGQPD4cYGIh4eLd2dqxLS51wcKla+s7oAAAUOUlEQVR4nO1diZbaOBaVZck78oINNgbvLGYPNZX8/5+NnmzAEDqd9HQnUx3dk1PgBY5z/bh6m2SEJCQkJCQkJCQkJCQkJCQkJCQk/uUwLdezbc91LParL+XfipFdn08awVgVwFSbtpnt/OrL+nfBCsoJxR3oZLPf3Lem29j61Zf3LwFLQ0XFmJzaPI1txzIRKIhjB2lersHCtTY1fvVFfnz4LedSv1S++/KwG1dvOlaV1v7J1/UvQzDRCX7LX5N8hVdPdaKv5j/pmv6FCKaY0LH/sM+v/apM6yyNXeF3sHHFB0S/JASfgl9ylR8e/gxjpb6OdCwQvPo0owExG73JV8dlGKDt2Nc8fmC0pQTPpID8MFipElIw5IOZulFLw27AM/IZIiimCEWzYM8iXLneCWWbAFlbTNSxdK9/DBEhass1IZ2NV3Eb7tp4KvYXRbLfKCiaov3arXLE9CAKj9HGB6t2S50o8a+98I8F1qr4JLQ52zOqW8hbW3gE246ahhFBdYiifYJjND9w989+0/vAJb5wo/511/3R4B0Jrru3kR4blwDRKtEjsWNUZSZF7RYhu9FdtKzRJT9T05ol4rBZYTKV4eL3ISBk3QlAsI92Ncp2yN5t29PtBIYYQyYKFo7F74PKqgqhJKzM7jMKof7L75V4RK7inRjSjLZwxoXOLBWcCfYkvvkpadbm1kTxjFu2T+tg2XnSzp7g7Gdf9AfEVu1Vdq7HiAbovUVh9erEZj1p+zec3Z2zrXDbGXWI1e1PutqPizHGuXgT5lwycmpbn1x0T2VAksP3E88B/7p35UYWykr7YuiWq3UxZI2xZPrb2GLcwCubxfP5hrt3JLsl55x5fVZUXddV/gcfz3l8c5rN06R4z1GCl6nYzlRc/OxL/1CosCp4di5LFJwudYLM3pq9YrrQzvk8cV2Hw02i+kz1zTUNkhYJQSPu79WdKXOm81/yP/gYyFVd8OyGlsLf2G0vzixbL2bp1/G1na0W01QIMwsC41ijAKVl91VYjX7WZX84BGrnPrt6hSz9lo2zCl2r/8g3diuqF52E5CuEiGJyaQe8YzX5h6/3o8IhRFjwqGT7GvmLPgTJ1eNzBtQZZjSM9KIKd87gpt047bHqHMGQUFl7eYkVmcELW+Vou+EqIGLuWCHNoH7ipeFsvyeTPB3kqI1UPV2t16XXZKk5JfufcdkfDgVWhAUW45I6TO/M8n3RB3wC/nhMCbYbTFcT9cDuR9h4UYg37l1xkIPxSwf8N4evqp0tjuzsU4AsMOPRhN51NirzWnWQwh24k8KSXUD0QbAY4zXcJm+oMlzzZTD+DHNNbubHelnw1eVAjD8nB/SGXEiXBlwT1uYhfh98gXWgA7ekEl8Rkoks2z6h4v7C065o8fDLX8dZXKGZ8P+4mM/MevcY/pX6zX6Zt4IXSyHSm36EhzH86NnovitaPJKkqUm52+rijMpGe8dfPOWOqhvTa3cnvOgUqyMkMcC+8zjKu8TGzzRe6PJIKQECnaJmesIWz9XYvHcJ48VstxMj64yU/9xFf0DEOgaBdS+06QXEWzz/6A+UKhy0yHY6Ud6opulftSHU3a59tDOi0hyLIVYWbAfYdIa3s6oVFW6zRb6qSBWCZ840ub65lQLY6KrvrcbAl0YuWS+TjQXjoTTpO2IVgyUGW0vPYgLR9u7QHUmqsops4TrYuvIIErHYMa243ilknfdF8knI/7KIlCYSMuR1vxUJgTMRKfwVm7ndcJarXfSc6ZRSrNJlnhVoQx+JpgbydjrGYOEUbzqmHcz9bFMDD7sVEr7vvluCw8U6dAvEObrUtc5/+3Y/zHlXI1an4//8Z4cfeVbC/xR5q/b0k96pjhbdPUrWaAOvPpYpjysKLFyOnYOccQ6sTMPuwKwjkfY18YgMeV51/Dlhv/fqyO267N26bBdCNA6ygtjDmAgf2lInTRcIzvs2Dbc36PU1Do/JwJ5vidOq20uKbtNdgG4UYV24IrhJ8epn/U/+z8F/3EBwbdsKLYE+2keEWc9gNDj1SvTAa2NUAcunm357DFG67rHKFsPhiMrEdIccC1dumbvFvnCgaabPcJTAn6bgAU9Bb+TD8olF6XjNiT72Pp4FJm0h/z2cCamfEakdAhoGPvI81VLRozjtu5TQEtyJQnvgKRI2TYZZkJzQ7DOdri9XZ3osJP+8DJZR95HpP/1f+BDw8IUhc0+VyhV+Qry4qi8QTdINpcM6Vs71hA4z+g5XjnBF6tktK+UJJyZ03rMu2Yqx9Ds4MszdhA035l2+LPj2eHc9MgaLLpeUhsPz+S2hw9gblBy4nk5u6b8dfI938tBWqM5BlbMBOErufs3HKLcuIfzSGbmlihoYDCHD8ZCv2FJ6GGya14B8cDsiyv+M3vW1XsBmjYeJ698WUzVGVRFcc0gBviX7nWu8QqeD/H1NH5QjvMaL6r2aMtJ9ZOFNk5jCE5mrGyRhqdy5YxusTqsGHOC7cnTa0TN9t+mM0Nltg7VX1/qB/Vk3no78E9w1WyVyIgAK1BOYa+rF1YyPikhr7sdGtwCFkvFVl9M70WZ6vJ1Bhrpdcz/Dnypko8CwaBCZK+VCjJfwcvXXHH1YEgnu6Q2KZ12LQYB7or2a3g/jhyKAv+ARIvTmpcLB28jRkMfKIrvGhzTttEr5z/zxVz7X7yk7StRTnaBEpTvkzMdv6iAgf+QZmV2awwt8oSGlTHcg1IrgwxyjrJ7z4Sw7PB5OTniQHaVU1bh3fbyohA53ls8dYxQs2VrsRiJHuiWyixctReDHlOlmCaS03ElLHnoEshMmdEi2ogyZJ3haPZa0wJj3hXi3M8UQWckyC3cQMBhfHHo1m8DmWORLhzC89H2jkAe2u/EP09U49Z5bNyBzEvI/QVbTUJS7Mhyi3x4rFZw6Rlgj5l1NC4QmLyJm046q1SPPk9z/6kQQeCB1y//sp+P3rQZ7fXX5j/4fPgKMU1e4NlEhAo41H700hsxXo9f80aTXL+bih5z6z/y1+tzvEIOire6+PvU3g3F6bHHROMM8gHZfFPre8ZNG469bzXeeaGNC1UMjqafKvlJO9IMia7kg2qu7fucBWtz5eHtguvPs1IeeMVj3B6bdS6JfYqU/RG3rHBlAdAETJ4YHqi4RvfcQVogXdSHhw5Sggkcl+6SXjgetkERz7KFb93N+XRkJBkOQDpiDXAxOs1VhwgUE1AqxkFGJHXig0yG/Y3u7I3r74GbEUqO5qoLSept2iUW38477ZQqPxLnj6w11WlRgCUxuM6hCQNZTMHFS30858Xu1cpEBHga4dygPWVfMyon0OnjAAgnStC477xlM8WIgtkFoNPy970VZC95xortODegRowMGoWY45Q4LBCd70HjN2DWi7lsR6Ud3IXhyrJxuImw6RWjDlUGDcXJw2oGz2q0kYSg90TE36UENgEFlcAWZU/6qQBZpVZRIgW8tZQgO1saJYfN5S0Rs4RGGvnDhhY1w4I+coX7Y5eC0nugdWPTdVH3+PSY3cJ/fOLbgX8GaAomiDZcn2Y+OGigZ2node8KiLR6/QAFgyUe1bDBHRZS1iGhlnFKh0Uux5+6Z5Pw2QJ0m4kLu63xH1nhxtybCGss0KfcIYJ6JdtteN8jmdDWcQWcgwCMRpxAld9CScquPJ1239D0IX3OJbrl394VHmBX40q1feBEMljLxDzAJZKBLZmdvYsJ8sRchB4M+rsNAOyK1SySR8YbSatMlTwcJ/RiUA5Rd44RvwND5ScUBLJq7hrKUBVmlABZDmlSpsE5ft9CYS8OYB9PBl8F5Td83Ckm8vvlfTe+HTx5Mve8Id0RjR9Y4aQHRZSRzSoAxjFTBLWFs0Aj5OUxU5hsrb3Civdcfskp4eDQFLtf8F7DjypEe+UZTWmgt/JQCD7zt3xcp3kD/3C2xUXE3DVirud56k4dT7XJYABimlEYg1g2PUlz4xBGUo+B3qwZvw7ioco02BD36QFJswOxA2La5a5ZC2z6YdPPgLjjDpn8yJNpye7LLAHwYB75svMkvYgqSbAnrcMFCat2KdhOEZl+QseIGHjRPJ1qQIhVzhURKiTwVCpewxAdELS3cophWSSTuXINlSkkgh4YDdlDSpBKZCehyDCCUC58mY245vWRn7ylx5nw4pI9DXASB5IXrjdOVwJGP933Lf4okEBAC2Tjb/TLB3eh2GncZfOux3Ra67KCtv4WAxeUbD/MMLf4lqBL1wjP/Y3/+XL6L9Zhcgr+9LPLvgw0sWOVQv4kMQUmy8JCo1EbF8DToWwKrHVPsQAue8tDJv4kh+DG7T3PrH0+yTloy/NTB8Psix2t48drg2P3Iz1xUAzDO5qHCvaKiR4kTbYuYfNDWiNgclrAB5ifQOhqfkd0cgXHzKJXjCosCZYam5PFKcDeCSCT/qj6bERFyc6JjkTd9nqJ8AkYLAo6i4uaRJTyWANPnZRN+X5Qw5d6YW9Ul7n7mEXC4fZ5TD7OCeAgyhpn3JVGec59j2PbEFEU3PVLh6SE0JXIZmhs8MTXeAjvuW+9aaCV/du/QXOXBd9xSOp5xnp/KUxZsMyrYL0srx6IpOlCJXEjijpKApxBG3rTxO89j+jI9kapU6acB4PDV4jIT4TKnaaSknhCWjTToITwdZNcMl3beL9hjvV7HNVld58m+TF8sRZoumzXICgvYMVeJjAqHKIn4oXvT9765CLn66/JTLpimLzP5y65HpOQ3rVtxzJhIg36ERaGF2QgTq1p/6pwJW39ZUe2m05JXy3/tRGRiZDEN0FQoUI6xzEQ/IsMidXHSs/nVkl26/9oxG5EuH3356gibillxxm48ckJN+IY8KJQLlD6jW4TGYhuYgdU5CqP15avgOcMTH9N6rz+btEun3dKPK+98CrqB8kBmz5+XsLGI4EzKBXbeNxqYZ/05qiv0uaWTyNaffL9GL3svZLv0+meJ5JjILMfX6GhhDcy7cg69r9AsZo/J0JowRycpWzxogrcfLJVpvIs0NEp0VU5deYUZWYuRK8LWDlu9PDu7RTV00FJqjLhFu58GZSxn/KnsxrwNqIcxF/fGUuSEitdgFwILI5khW6ZbRK9MBhO9ulu1WSND12Pr7rW5Y73LkHBlTxUTse6+GHtykutlvoZNOhssSqvepcVNNOZTvY0HpFX3JIgRh/qh3xypLY9VRpdOVM5ECvQfIuieNmGhuZ7Zu/hy0wy/1GkbPTt7rAmJXvbuB3PQ53TlZv2avSHBsiL7x4j0biGCrEzM1Sgv9zclNoMxWdBllUdxYifxPKt2dEHL4Ep+TNQgqkPcZ7BLLCfLfhON2j9BZeYHJY8XZ/UgsnODanmiRNUxUabLIrgrd8pWLuRHvK5Eg1r5KIU/A48QWzBK56jl6Jyi82n74N8ZpsmYaQ5VxAy8tM0LZOfnLk1ihETy/KdoMNmAFZs2Ci483jMqPfzWM06d5lis45mtBHnbPbTF2hPZPfodCDDpZxAeY7TM0LixPzkseJntdJLDJlibTIt3Tts/DcCn5GXKSeIZrtY/vs1EATGYbgYhj1M2h8q27SvdjoV8H/mLeYjsOkdTb3O1+lwla/lAw+8D22G87B7ImaDtFnHp2AUG9cvleYnYfh9Hx1WIWp1Fl/lhk7KLr5lG5224M4xDWYz9buSY0D6d1IzQ2mPYDL7wsZFLyrmxLikYfDouIr+uAyt6b6+uSUaIXE3wh2BPMT5clTbWaM6lGp3GZ4a0Efqc0GOBvGW+906+frgl+AL+oZUMB38QOSH6ro9XTC7N1LcIbL7Z/N/ZZMikLmZb6x49flYJkb0yPw5rjAle3vyHEWI8GPRQoGwq0QSNMmsgxvFGJfhdFmL/EryQU31IB7EhMOvEt2dzXmFlU0xIK1XjL8NuCcFaOP+WH8HSM8WYbCXN/xOs/KQTlexT/1U52/GzA8FEXzVSNP53JDX3JrCK38IiTwPbYow5dpA29Y7qKj8wreUswr8LbtYC2QJiekX/nqzaVIaBfy8MZ15/WW5W0xNgOj3stlkwksUqCQkJif9/mNK9+264580fLF/y5yOep+iydvW9mJXx5HUzs/KnJBYlk/7H96KukENeHvnD4Nq5hubJ6fV+iSscZXI8TrTJRdMuRLtQTdP4pva21i4T+KfBn6kyRwGBk2i3i++EKYWpQlnFPzlRLpSKD/LDx7cwU9ao5fvFh7X1m3Z5++1ngxveOqvXHpl7bqO5CQ48N5+4brV0Iuo1iuv6EXYnGUPM8/TAi+c48ezAjQm0La3i0N22bqzG7rHhH1y5KXXzKVPi0Am3rue5keq7y62bTWXGCe12LraIjRhbWEz1kOnqJspLZFMUayjD2huadoXXt/mSrqlhvumhLhZJKmbxaFshS7XQMUCOQ1FyQdEBjc8xO9eIMx3xQ2WO5nKSMkJ+Xq8QsWO6JYipbnRsNWSNd0mjmJxo7oiY6AREl6EeUWRjY664n+Ju7taMepzoOZ4nWmAvtvpmegKi0erohjlbqLBw22g3Tmr5HBYUfKJHixONNhMLerrQcc9QoB9nhyMQ7VFKO4tOFqlBsy/UCAjyTCKI1n0UVojSzYwEaDmJ42wNRFuqizY1qpYo0VmjT2bT316iuUinDZ0jPrR5eiKI9mEtiaLl0gFEw0wLv3skxXbK3C8VMQ3aoJ7oUjuoBUqUTjrgw0I60PIyVXOox8BKWKGUjh6JbsPUn3ThMFgBQjzYl3Okmtx20fgyI/3Ts1oybhudcSdwjDqijSgIt6LABfMOI92KKUonfEcUfC7gBH8xgsORfEangI0SKJ8EyEhM8QpgCfzjWxEr+05nu4ks2OW56eWqum4/KRFC8BgxG1ld5dxzui8RcYwvV8z8SwgPsf/pR5Ib8UIG6H8JUbj8VoPp14jlwncSEhISEhISEhJ/J/4Ld6VopYPVGMMAAAAASUVORK5CYII=" alt="Be a kind human sticker" class="card-image small-logo">
+                <div class="card-content stickers">
+                    <h2 class="card-title">Medical- NEET</h2>
+                </div>
+            </a>
+            
+            <a href="/wallpaper" class="card">
+                <img src="https://wallpapers.com/images/hd/upsc-logo-on-gray-texture-wwh2pgl8436kde48.jpg" alt="Tulip wallpaper" class="card-image small-logo">
+                <div class="card-content wallpaper">
+                    <h2 class="card-title">UPSC- Civil Services</h2>
+                </div>
+            </a>
+
+            <a href="/poster" class="card">
+                <img src="https://m.media-amazon.com/images/I/61wF6ye44aL.jpg" alt="Toast poster" class="card-image">
+                <div class="card-content poster">
+                    <h2 class="card-title">Chartered Accountancy</h2>
+                </div>
+            </a>
+
+            <a href="/tshirt" class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKu_v-W3tfY08EQUODIDPOHQXDvms-vUdjeQ&s" alt="Sunset t-shirt design" class="card-image">
+                <div class="card-content tshirt">
+                    <h2 class="card-title">Banking</h2>
+                </div>
+            </a>
+
+            <a href="/monogram" class="card">
+                <img src="https://static.vecteezy.com/system/resources/previews/000/523/845/non_2x/train-railway-icon-isolated-on-white-background-vector.jpg" alt="Monogram S design" class="card-image">
+                <div class="card-content monogram">
+                    <h2 class="card-title">Railway</h2>
+                </div>
+            </a>
+
+            <a href="/social" class="card">
+                <img src="https://bcassetcdn.com/public/blog/wp-content/uploads/2023/02/08131848/creative-architecture-logo-by-garasigrafis-dribbble.png" alt="Podcast Galaxy social post" class="card-image">
+                <div class="card-content social">
+                    <h2 class="card-title">Architecture</h2>
+                </div>
+            </a>
+
+            <a href="/social2" class="card">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/008/296/267/small_2x/colorful-swirl-logo-design-concept-illustration-free-vector.jpg" alt="Podcast Galaxy social post" class="card-image">
+                <div class="card-content social2">
+                    <h2 class="card-title">Design</h2>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+
+</body>
+</html>

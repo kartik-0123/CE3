@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            background: #2c3e50;
+            padding: 20px;
+            color: white;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .nav-link {
+            color: white;
+            margin: 10px 0;
+        }
+        .nav-link:hover {
+            background: #34495e;
+            color: white;
+        }
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .table-responsive {
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h3 class="mb-4">Admin Panel</h3>
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="#" data-section="users">
+                <i class='bx bx-user'></i> Users
+            </a>
+            <a class="nav-link" href="#" data-section="cart">
+                <i class='bx bx-cart'></i> Cart Items
+            </a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <!-- Users Section -->
+        <div id="users-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Users Management</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                    <i class='bx bx-plus'></i> Add User
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Cart Items Section -->
+        <div id="cart-section" style="display: none;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Cart Items Management</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCartItemModal">
+                    <i class='bx bx-plus'></i> Add Cart Item
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User ID</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addUserForm">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">City</label>
+                            <input type="text" class="form-control" name="city" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Country</label>
+                            <input type="text" class="form-control" name="country" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addUser()">Add User</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Cart Item Modal -->
+    <div class="modal fade" id="addCartItemModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Cart Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCartItemForm">
+                        <div class="mb-3">
+                            <label class="form-label">Product Name</label>
+                            <input type="text" class="form-control" name="product_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Price</label>
+                            <input type="number" class="form-control" name="price" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Quantity</label>
+                            <input type="number" class="form-control" name="quantity" value="1" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addCartItem()">Add Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal fade" id="editUserModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editUserForm">
+                        <input type="hidden" name="user_id" id="edit_user_id">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" name="username" id="edit_username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" id="edit_email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">City</label>
+                            <input type="text" class="form-control" name="city" id="edit_city" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Country</label>
+                            <input type="text" class="form-control" name="country" id="edit_country" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="updateUser()">Update User</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Cart Item Modal -->
+    <div class="modal fade" id="editCartItemModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Cart Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCartItemForm">
+                        <input type="hidden" name="item_id" id="edit_item_id">
+                        <div class="mb-3">
+                            <label class="form-label">Product Name</label>
+                            <input type="text" class="form-control" name="product_name" id="edit_product_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Price</label>
+                            <input type="number" class="form-control" name="price" id="edit_price" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Quantity</label>
+                            <input type="number" class="form-control" name="quantity" id="edit_quantity" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="updateCartItem()">Update Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+        let currentUser = null;
+
+        // Add CSRF token to all requests
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        // Add error handling and loading states
+        function showLoading(elementId) {
+            document.getElementById(elementId).innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+        }
+
+        function showError(message) {
+            alert(message);
+        }
+
+        // Navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = e.target.dataset.section;
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                if (section === 'users') {
+                    document.getElementById('users-section').style.display = 'block';
+                    document.getElementById('cart-section').style.display = 'none';
+                    loadUsers();
+                } else {
+                    document.getElementById('users-section').style.display = 'none';
+                    document.getElementById('cart-section').style.display = 'block';
+                    loadCartItems();
+                }
+            });
+        });
+
+        // Users Management
+        async function loadUsers() {
+            showLoading('users-table-body');
+            try {
+                const response = await fetch(`${API_BASE_URL}/users`, {
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    }
+                });
+                if (!response.ok) throw new Error('Failed to fetch users');
+                const users = await response.json();
+                const tbody = document.getElementById('users-table-body');
+                tbody.innerHTML = users.map(user => `
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${user.city}</td>
+                        <td>${user.country}</td>
+                        <td class="action-buttons">
+                            <button class="btn btn-sm btn-warning" onclick="editUser(${user.id})">Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteUser(${user.id})">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading users:', error);
+                showError('Error loading users');
+            }
+        }
+
+        async function addUser() {
+            const form = document.getElementById('addUserForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/users`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+                    form.reset();
+                    loadUsers();
+                } else {
+                    throw new Error('Failed to add user');
+                }
+            } catch (error) {
+                console.error('Error adding user:', error);
+                alert('Error adding user');
+            }
+        }
+
+        async function editUser(id) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/users/${id}`, {
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    }
+                });
+                if (!response.ok) throw new Error('Failed to fetch user');
+                const user = await response.json();
+                
+                document.getElementById('edit_user_id').value = user.id;
+                document.getElementById('edit_username').value = user.username;
+                document.getElementById('edit_email').value = user.email;
+                document.getElementById('edit_city').value = user.city;
+                document.getElementById('edit_country').value = user.country;
+                
+                new bootstrap.Modal(document.getElementById('editUserModal')).show();
+            } catch (error) {
+                console.error('Error loading user:', error);
+                showError('Error loading user details');
+            }
+        }
+
+        async function updateUser() {
+            const form = document.getElementById('editUserForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            const userId = data.user_id;
+            delete data.user_id;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/users/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) throw new Error('Failed to update user');
+                
+                bootstrap.Modal.getInstance(document.getElementById('editUserModal')).hide();
+                loadUsers();
+            } catch (error) {
+                console.error('Error updating user:', error);
+                showError('Error updating user');
+            }
+        }
+
+        async function deleteUser(id) {
+            if (!confirm('Are you sure you want to delete this user?')) return;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/users/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    loadUsers();
+                } else {
+                    throw new Error('Failed to delete user');
+                }
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                alert('Error deleting user');
+            }
+        }
+
+        // Cart Items Management
+        async function loadCartItems() {
+            showLoading('cart-table-body');
+            try {
+                const response = await fetch(`${API_BASE_URL}/cart`, {
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    }
+                });
+                if (!response.ok) throw new Error('Failed to fetch cart items');
+                const items = await response.json();
+                const tbody = document.getElementById('cart-table-body');
+                tbody.innerHTML = items.map(item => `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${item.user_id}</td>
+                        <td>${item.product_name}</td>
+                        <td>$${item.price}</td>
+                        <td>${item.quantity}</td>
+                        <td class="action-buttons">
+                            <button class="btn btn-sm btn-warning" onclick="editCartItem(${item.id})">Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteCartItem(${item.id})">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading cart items:', error);
+                showError('Error loading cart items');
+            }
+        }
+
+        async function addCartItem() {
+            const form = document.getElementById('addCartItemForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/cart`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    bootstrap.Modal.getInstance(document.getElementById('addCartItemModal')).hide();
+                    form.reset();
+                    loadCartItems();
+                } else {
+                    throw new Error('Failed to add cart item');
+                }
+            } catch (error) {
+                console.error('Error adding cart item:', error);
+                alert('Error adding cart item');
+            }
+        }
+
+        async function editCartItem(id) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/cart/${id}`, {
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    }
+                });
+                if (!response.ok) throw new Error('Failed to fetch cart item');
+                const item = await response.json();
+                
+                document.getElementById('edit_item_id').value = item.id;
+                document.getElementById('edit_product_name').value = item.product_name;
+                document.getElementById('edit_price').value = item.price;
+                document.getElementById('edit_quantity').value = item.quantity;
+                
+                new bootstrap.Modal(document.getElementById('editCartItemModal')).show();
+            } catch (error) {
+                console.error('Error loading cart item:', error);
+                showError('Error loading cart item details');
+            }
+        }
+
+        async function updateCartItem() {
+            const form = document.getElementById('editCartItemForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            const itemId = data.item_id;
+            delete data.item_id;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/cart/${itemId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) throw new Error('Failed to update cart item');
+                
+                bootstrap.Modal.getInstance(document.getElementById('editCartItemModal')).hide();
+                loadCartItems();
+            } catch (error) {
+                console.error('Error updating cart item:', error);
+                showError('Error updating cart item');
+            }
+        }
+
+        async function deleteCartItem(id) {
+            if (!confirm('Are you sure you want to delete this cart item?')) return;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/cart/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    loadCartItems();
+                } else {
+                    throw new Error('Failed to delete cart item');
+                }
+            } catch (error) {
+                console.error('Error deleting cart item:', error);
+                alert('Error deleting cart item');
+            }
+        }
+
+        // Load initial data
+        loadUsers();
+    </script>
+</body>
+</html> 

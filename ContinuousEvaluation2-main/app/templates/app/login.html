@@ -1,0 +1,111 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block main-content %}
+<style>
+  body {
+    background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
+    min-height: 100vh;
+  }
+  .login-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 32px 0 rgba(67,97,238,0.10), 0 1.5px 6px 0 rgba(67,97,238,0.08);
+    padding: 2.5rem 2rem 2rem 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    transition: box-shadow 0.2s;
+  }
+  .login-card:hover {
+    box-shadow: 0 12px 48px 0 rgba(67,97,238,0.18), 0 3px 12px 0 rgba(67,97,238,0.12);
+  }
+  .login-title {
+    color: #4361ee;
+    font-weight: 700;
+    font-size: 2.1rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+  }
+  .login-btn {
+    background: linear-gradient(90deg, #4361ee 0%, #5f2eea 100%);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.7rem 2.2rem;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px 0 rgba(67,97,238,0.10);
+    transition: background 0.2s;
+  }
+  .login-btn:hover {
+    background: linear-gradient(90deg, #5f2eea 0%, #4361ee 100%);
+    color: #fff;
+  }
+  .login-link {
+    color: #4361ee;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .login-link:hover {
+    color: #5f2eea;
+    text-decoration: underline;
+  }
+  .form-label {
+    font-weight: 500;
+    color: #22223b;
+  }
+  .form-control:focus {
+    border-color: #4361ee;
+    box-shadow: 0 0 0 0.2rem rgba(67,97,238,0.15);
+  }
+  .alert {
+    margin-top: 1.5rem;
+  }
+</style>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="col-sm-8 col-md-6 col-lg-5 login-card">
+    <h3 class="login-title text-center">Login</h3>
+    <hr>
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {% for fm in form %}
+        <div class="mb-3">
+          {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+        </div>
+      {% endfor %}
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <a href="{% url 'password_reset' %}" class="login-link">Forgot Password?</a>
+      </div>
+      <div class="d-grid mb-2">
+        <input type="submit" class="login-btn" value="Login">
+      </div>
+      <div class="text-center mt-2">
+        <small>New User? <a href="{% url 'customerregistration' %}" class="login-link">Create an Account</a></small>
+      </div>
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+          <p class="alert alert-danger my-3">{{error}}</p>
+        {% endfor %}
+      {% endif %}
+    </form>
+    {% if backend_down %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Backend Server Offline:</strong> The backend server is <b>OFF</b>. Login authentication is not working. Please try again later.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="window.location.reload();"></button>
+    </div>
+    <script>
+      // Prevent form submission if backend is down
+      document.querySelector('form').onsubmit = function(e) {
+        e.preventDefault();
+        return false;
+      };
+    </script>
+    {% endif %}
+  </div>
+</div>
+{% endblock main-content %}
+
+
+
+

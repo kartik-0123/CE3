@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+        <!-- font awesome -->
+        <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+:root{
+    --white-light: rgba(255, 255, 255, 0.5);
+    --alice-blue: #f8f9fa;
+    --carribean-green: #40c9a2;
+    --gray: #ededed;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Utility stylings */
+img{
+    width: 100%;
+    display: block;
+}
+.container{
+    width: 88vw;
+    margin: 0 auto;
+}
+.lg-title,
+.md-title,
+.sm-title{
+    font-family: 'Roboto', sans-serif;
+    padding: 0.6rem 0;
+    text-transform: capitalize;
+}
+.lg-title{
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 1.3rem 0;
+    opacity: 0.9;
+}
+.md-title{
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
+.sm-title{
+    font-weight: 300;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.text-light{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    opacity: 0.5;
+    margin: 0.4rem 0;
+}
+
+/* product section */
+.products{
+    background: var(--alice-blue);
+    padding: 3.2rem 0;
+}
+.products .text-light{
+    text-align: center;
+    width: 70%;
+    margin: 0.9rem auto;
+}
+.product{
+    margin: 2rem;
+    position: relative;
+}
+.product-content{
+    background: var(--gray);
+    padding: 3rem 0.5rem 2rem 0.5rem;
+    cursor: pointer;
+}
+.product-img{
+    background: var(--white-light);
+    box-shadow: 0 0 20px 10px var(--white-light);
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    transition: background 0.5s ease;
+}
+.product-btns{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.4rem;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+}
+.btn-cart, .btn-buy{
+    background: transparent;
+    border: 1px solid black;
+    padding: 0.8rem 0;
+    width: 125px;
+    font-family: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.6s ease;
+}
+.btn-cart{
+    background: black;
+    color: white;
+}
+.btn-cart:hover{
+    background: var(--carribean-green);
+}
+.btn-buy{
+    background: white;
+}
+.btn-buy:hover{
+    background: var(--carribean-green);
+    color: #fff;
+}
+.product-info{
+    background: white;
+    padding: 2rem;
+}
+.product-info-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rating span{
+    color: var(--carribean-green);
+}
+.product-name{
+    color: black;
+    display: block;
+    text-decoration: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.product-price{
+    padding-top: 0.6rem;
+    padding-right: 0.6rem;
+    display: inline-block;
+}
+.product-price:first-of-type{
+    text-decoration: line-through;
+    color: var(--carribean-green);
+}
+.product-img img{
+    transition: transform 0.6s ease;
+}
+.product:hover .product-img img{
+    transform: scale(1.1);
+}
+.product:hover .product-img{
+    background: var(--carribean-green);
+}
+.product:hover .product-btns{
+    opacity: 1;
+}
+.off-info .sm-title{
+    background: var(--carribean-green);
+    color: white;
+    display: inline-block;
+    padding: 0.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    z-index: 1;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+/* product collection */
+.product-collection{
+    padding: 3.2rem 0;
+}
+.product-collection-wrapper{
+    padding: 3.2rem 0;
+}
+.product-col-left {
+    background: linear-gradient(rgba(173, 216, 230, 0.8), rgba(135, 206, 250, 1)); /* Light blue gradient */
+}
+
+.product-col-r-top {
+    background: linear-gradient(rgba(173, 216, 230, 0.8), rgba(135, 206, 250, 1)); /* Light blue gradient */
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 50vh;
+    padding: 2rem 1.5rem 3.2rem;
+    margin: 5px;
+}
+.product-col-r-bottom > div:first-child{
+    background: #eaa001;
+}
+.product-col-r-bottom > div:last-child{
+    background: #0090ff;
+}
+.product-col-content{
+    text-align: center;
+    color: white;
+}
+.product-collection .text-light{
+    opacity: 1;
+    font-size: 0.8;
+    font-weight: 400;
+    line-height: 1.7;
+}
+.btn-dark{
+    background: black;
+    color: white;
+    outline: 0;
+    border-radius: 25px;
+    padding: 0.7rem 1rem;
+    border: 0;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.6s ease;
+    font-size: 1rem;
+    font-family: inherit;
+}
+.btn-dark:hover{
+    background: var(--carribean-green);
+}
+
+
+
+
+
+
+
+/* Media Queries */
+@media screen and (min-width: 992px){
+    .product-items{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .product-col-r-bottom{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (min-width: 1200px){
+    .product-items{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .product{
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+    .products .text-light{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1336px){
+    .product-items{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .product-collection-wrapper{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .flex{
+        height: 60vh;
+    }
+    .product-col-left{
+        height: 121.5vh;
+    }
+}
+/* ----------- */
+.product-img {
+    width: 150px; /* Adjust as needed */
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent; /* Initially transparent */
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.product-img:hover {
+    background-color: rgb(177, 234, 177); /* Green appears on hover */
+    transform: scale(1.1); /* Slightly enlarges the circle */
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: 80%;
+    max-height: 80%;
+    display: block;
+    margin: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-img:hover img {
+    transform: scale(2.5); /* Image pops out slightly */
+}
+
+/* ----------- */
+.product-img {
+    width: 220px; /* Slightly increase the size of the circular container */
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.product-img img {
+    width: 55%;
+    height: 80%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product:hover .product-img img {
+    transform: scale(1.1);
+    width: 55%;
+    height: 80%; /* Keep the same hover effect */
+}
+/* ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+        
+        /* Cart Styles */
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #40c9a2;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .cart-icon i {
+            color: white;
+            font-size: 24px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 999;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .cart-header h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .close-cart {
+            cursor: pointer;
+            font-size: 24px;
+            color: #666;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 8px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: #40c9a2;
+            font-weight: 500;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .quantity {
+            padding: 0 10px;
+        }
+
+        .remove-item {
+            color: #ff4444;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .checkout-btn {
+            background: #40c9a2;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 25px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            background: #35b090;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 998;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+        /* Cart Icon Button */
+.cart-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Adjust the cart button image size */
+.cart-image {
+    width: 35px;  /* Reduce width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Cart count badge */
+.cart-icon .cart-count {
+    background-color: red;
+    color: white;
+    font-size: 12px; /* Adjust text size */
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 50%;
+    min-width: 18px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class = "products">
+            <div class = "container">
+                <h1 class = "lg-title">Attention is all you need for NEET</h1>
+                <p class = "text-light">NEET is a national level engineering entrance examination which aims to select capable and skillful students all over India.</p>
+
+                <div class = "product-items">
+                    <!-- single product -->
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <img src = "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1621014892i/58042724.jpg" alt = "product image">
+                            </div>
+                            <div class = "product-btns">
+                                <button type = "button" class = "btn-cart"> add to cart
+                                    <span><i class = "fas fa-plus"></i></span>
+                                </button>
+                                <button type = "button" class = "btn-buy"> buy now
+                                    <span><i class = "fas fa-shopping-cart"></i></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <div class = "product-info-top">
+                                <h2 class = "sm-title">Physics</h2>
+                                <div class = "rating">
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "far fa-star"></i></span>
+                                </div>
+                            </div>
+                            <a href = "#" class = "product-name">Mechanics Vol-1</a>
+                            <p class = "product-price">$ 50.00</p>
+                            <p class = "product-price">$ 20.00</p>
+                        </div>
+
+                        <div class = "off-info">
+                            <h2 class = "sm-title">60% off</h2>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+                    <!-- single product -->
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <img src = "https://arihantbooks.com/cdn/shop/files/9789388127288.jpg?v=1722936059" alt = "product image">
+                            </div>
+                            <div class = "product-btns">
+                                <button type = "button" class = "btn-cart"> add to cart
+                                    <span><i class = "fas fa-plus"></i></span>
+                                </button>
+                                <button type = "button" class = "btn-buy"> buy now
+                                    <span><i class = "fas fa-shopping-cart"></i></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <div class = "product-info-top">
+                                <h2 class = "sm-title">physics</h2>
+                                <div class = "rating">
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "far fa-star"></i></span>
+                                </div>
+                            </div>
+                            <a href = "#" class = "product-name">Arihant</a>
+                            <p class = "product-price">$ 80.00</p>
+                            <p class = "product-price">$ 30.00</p>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+                    <!-- single product -->
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <img src = "https://arihantbooks.com/cdn/shop/files/9789389204971.jpg?v=1722935960" alt = "product image">
+                            </div>
+                            <div class = "product-btns">
+                                <button type = "button" class = "btn-cart"> add to cart
+                                    <span><i class = "fas fa-plus"></i></span>
+                                </button>
+                                <button type = "button" class = "btn-buy"> buy now
+                                    <span><i class = "fas fa-shopping-cart"></i></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <div class = "product-info-top">
+                                <h2 class = "sm-title">chemistry</h2>
+                                <div class = "rating">
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "far fa-star"></i></span>
+                                </div>
+                            </div>
+                            <a href = "#" class = "product-name">Physical Chemistry</a>
+                            <p class = "product-price">$ 90.00</p>
+                            <p class = "product-price">$ 60.00</p>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+                    <!-- single product -->
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq7xndLdAE7bVJpdDpqNRahF7wgTf8w7vKow&s" alt = "product image">
+                            </div>
+                            <div class = "product-btns">
+                                <button type = "button" class = "btn-cart"> add to cart
+                                    <span><i class = "fas fa-plus"></i></span>
+                                </button>
+                                <button type = "button" class = "btn-buy"> buy now
+                                    <span><i class = "fas fa-shopping-cart"></i></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <div class = "product-info-top">
+                                <h2 class = "sm-title">Biology </h2>
+                                <div class = "rating">
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "far fa-star"></i></span>
+                                </div>
+                            </div>
+                            <a href = "#" class = "product-name">Balaji Publications</a>
+                            <p class = "product-price">$ 90.00</p>
+                            <p class = "product-price">$ 60.00</p>
+                        </div>
+
+                        <div class = "off-info">
+                            <h2 class = "sm-title">25% off</h2>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+                    <!-- single product -->
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <img src = "https://rukminim2.flixcart.com/image/850/1000/xif0q/book/d/i/w/neet-powerhouse-biology-book-for-2024-exam-4500-question-to-original-imagwfpgg9ksjqhp.jpeg?q=90&crop=false" alt = "product image">
+                            </div>
+                            <div class = "product-btns">
+                                <button type = "button" class = "btn-cart"> add to cart
+                                    <span><i class = "fas fa-plus"></i></span>
+                                </button>
+                                <button type = "button" class = "btn-buy"> buy now
+                                    <span><i class = "fas fa-shopping-cart"></i></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <div class = "product-info-top">
+                                <h2 class = "sm-title">Biology</h2>
+                                <div class = "rating">
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "far fa-star"></i></span>
+                                </div>
+                            </div>
+                            <a href = "#" class = "product-name">Bathla Publications</a>
+                            <p class = "product-price">$ 50.00</p>
+                            <p class = "product-price">$ 33.00</p>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+                    <!-- single product -->
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <img src = "https://grbathla.com/wp-content/uploads/2020/10/Organic-Chemistry-for-1st-year-Programme-Final.jpg" alt = "product image">
+                            </div>
+                            <div class = "product-btns">
+                                <button type = "button" class = "btn-cart"> add to cart
+                                    <span><i class = "fas fa-plus"></i></span>
+                                </button>
+                                <button type = "button" class = "btn-buy"> buy now
+                                    <span><i class = "fas fa-shopping-cart"></i></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <div class = "product-info-top">
+                                <h2 class = "sm-title">Chemistry</h2>
+                                <div class = "rating">
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "far fa-star"></i></span>
+                                </div>
+                            </div>
+                            <a href = "#" class = "product-name">Organic Chemistry</a>
+                            <p class = "product-price">$ 150.00</p>
+                            <p class = "product-price">$ 133.00</p>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+                    <!-- single product -->
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <img src = "https://rukminim2.flixcart.com/image/850/1000/kjbr8280-0/book/8/k/t/comprehensive-chemistry-jee-advanced-original-imafyxerdm7czjdb.jpeg?q=20&crop=false" alt = "product image">
+                            </div>
+                            <div class = "product-btns">
+                                <button type = "button" class = "btn-cart"> add to cart
+                                    <span><i class = "fas fa-plus"></i></span>
+                                </button>
+                                <button type = "button" class = "btn-buy"> buy now
+                                    <span><i class = "fas fa-shopping-cart"></i></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <div class = "product-info-top">
+                                <h2 class = "sm-title">Chemistry</h2>
+                                <div class = "rating">
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "far fa-star"></i></span>
+                                </div>
+                            </div>
+                            <a href = "#" class = "product-name">Comprehensive Chemistry</a>
+                            <p class = "product-price">$ 50.00</p>
+                            <p class = "product-price">$ 23.00</p>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+                    <!-- single product -->
+                    <div class = "product">
+                        <div class = "product-content">
+                            <div class = "product-img">
+                                <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrK4lPh7gPeC_qy9QYBo7OvSxKH37kD6M3nw&s" alt = "product image">
+                            </div>
+                            <div class = "product-btns">
+                                <button type = "button" class = "btn-cart"> add to cart
+                                    <span><i class = "fas fa-plus"></i></span>
+                                </button>
+                                <button type = "button" class = "btn-buy"> buy now
+                                    <span><i class = "fas fa-shopping-cart"></i></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class = "product-info">
+                            <div class = "product-info-top">
+                                <h2 class = "sm-title">Chemistry</h2>
+                                <div class = "rating">
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "fas fa-star"></i></span>
+                                    <span><i class = "far fa-star"></i></span>
+                                </div>
+                            </div>
+                            <a href = "#" class = "product-name">Objective Chemistry</a>
+                            <p class = "product-price">$ 20.00</p>
+                            <p class = "product-price">$ 10.00</p>
+                        </div>
+
+                        <div class = "off-info">
+                            <h2 class = "sm-title">50% off</h2>
+                        </div>
+                    </div>
+                    <!-- end of single product -->
+                </div>
+            </div>
+        </div>
+
+        <div class = "product-collection">
+            <div class = "container">
+                <div class = "product-collection-wrapper">
+                    <!-- product col left -->
+                    <div class = "product-col-left flex">
+                        <div class = "product-col-content">
+                            
+                            <h2 class="md-title" style="color: black; font-size: 3.7rem; font-weight: bold;font-family: 'Algerian', sans-serif">Major Essentials</h2>
+
+                            <img src="https://static.pw.live/5eb393ee95fab7468a79d189/4dac5614-34a0-4785-8521-529c7a3fa920.png">
+                            <p class = "text-light">MBBS/BAMS is more than just equations and blueprints; it is a way of thinking, a mindset of problem-solving, and a relentless pursuit of innovation. It fuels creativity, transforms ideas into reality, and shapes the future of technology and humanity. A true engineer sees challenges as opportunities and failures as lessons, constantly pushing boundaries to build a better world</p>
+                            <button type = "button" class = "btn-dark">Shop now</button>
+                        </div>
+                    </div>
+
+                    <!-- product col right -->
+                    <div class = "product-col-right">
+                        <div class = "product-col-r-top flex">
+                            <div class = "product-col-content">
+                                <h2 class = "sm-title">women's dresses </h2>
+                                <h2 class = "md-title">women's collection </h2>
+                                <img src="https://cdn.magzter.com/images/bundlecovers/v2/1560420347-bunldleoffer11.png">
+                                <p class = "text-light"> Passion of medicos isn't just about designing machines or structures—it's about making an impact, solving real-world problems, and leaving a legacy of progress. 🚀🔧</p>
+                                <button type = "button" class = "btn-dark">Shop now</button>
+                            </div>
+                        </div>
+
+                        <div class = "product-col-r-bottom">
+                            <!-- left -->
+                            <div class = "flex">
+                                <div class = "product-col-content">
+                                    <h2 class = "sm-title">summer sale </h2>
+                                    <h2 class = "md-title">Extra 50% Off </h2>
+                                    <p class = "text-light">Books are more than just pages; they are gateways to new worlds, wisdom, and endless possibilities. Whether you're seeking inspiration, adventure, or knowledge, the right book is waiting for you. Explore our collection and let every story fuel your imagination.</p>
+                                    <button type = "button" class = "btn-dark">Shop now</button>
+                                </div>
+                            </div>
+                            <!-- right -->
+                            <div class = "flex">
+                                <div class = "product-col-content">
+                                    <h2 class = "sm-title">shops </h2>
+                                    <h2 class = "md-title">best sellers </h2>
+                                    <p class = "text-light">From gripping thrillers to life-changing self-help, our best sellers are handpicked favorites loved by readers worldwide. Stay ahead with the most popular titles and find your next must-read today. Don't miss out—great stories await! 📚✨</p>
+                                    <button type = "button" class = "btn-dark">Shop now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -------------------- -->
+        <div class="cart-icon" onclick="toggleCart()">
+            <!-- <i class="fas fa-shopping-cart"></i> -->
+            <img src="https://media.istockphoto.com/id/898475764/vector/shopping-trolley-cart-icon-in-green-circle-vector.jpg?s=612x612&w=0&k=20&c=W_b90qFRpj_FyLyI19xWqB6EoNSuJYwMSN9nnKkE9Hk=" alt="Cart" class="cart-image" ">
+            <span class="cart-count">0</span>
+        </div>
+    
+        <!-- Cart Sidebar -->
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+                <span class="close-cart" onclick="toggleCart()">×</span>
+            </div>
+            <div id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            <div class="cart-total">
+                <h3>Total: $<span id="cart-total">0.00</span></h3>
+                <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    
+        <!-- Overlay -->
+        <div class="overlay" onclick="toggleCart()"></div>
+       
+            
+            
+    
+        <script>
+            let cart = [];
+            let cartOpen = false;
+            
+            // Initialize cart buttons
+            document.querySelectorAll('.btn-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const product = this.closest('.product');
+                    const name = product.querySelector('.product-name').textContent;
+                    const price = parseFloat(product.querySelector('.product-price:last-child').textContent.replace('$', ''));
+                    const img = product.querySelector('.product-img img').src;
+                    
+                    addToCart(name, price, img);
+                });
+            });
+            
+            function addToCart(name, price, img) {
+                const existingItem = cart.find(item => item.name === name);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ name, price, quantity: 1, img });
+                }
+                
+                updateCart();
+                saveToDatabase(name, price, 1);
+                if (!cartOpen) toggleCart();
+            }
+            
+            // Send data to Flask backend (Database)
+            function saveToDatabase(name, price, quantity) {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    alert('Please log in first');
+                    return;
+                }
+
+                console.log("Sending Data to Flask:", { product_name: name, price, quantity });
+
+                fetch("/api/cart", {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ 
+                        product_name: name, 
+                        price: price, 
+                        quantity: quantity 
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to save cart item');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("DB Response:", data);
+                    alert('Item added to cart successfully!');
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert('Failed to add item to cart. Please try again.');
+                });
+            }
+
+            
+            function updateCart() {
+                const cartItems = document.getElementById('cart-items');
+                const cartCount = document.querySelector('.cart-count');
+                const cartTotal = document.getElementById('cart-total');
+                
+                cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+                
+                cartItems.innerHTML = cart.length ? '' : '<div class="empty-cart">Your cart is empty</div>';
+                
+                cart.forEach(item => {
+                    cartItems.innerHTML += `
+                        <div class="cart-item">
+                            <img src="${item.img}" alt="${item.name}">
+                            <div class="cart-item-details">
+                                <div class="cart-item-title">${item.name}</div>
+                                <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                                <div class="cart-item-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
+                                    <span class="quantity">${item.quantity}</span>
+                                    <button class="quantity-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                                    <span class="remove-item" onclick="removeItem('${item.name}')">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotal.textContent = total.toFixed(2);
+            }
+            function updateQuantity(name, change) {
+    const item = cart.find(item => item.name === name);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeItem(name);
+        } else {
+            updateCart();
+            saveToDatabase(name, item.price, item.quantity); // Removed `img`
+        }
+    }
+}
+
+            
+            function removeItem(name) {
+                cart = cart.filter(item => item.name !== name);
+                updateCart();
+            }
+            
+            function toggleCart() {
+                const cartSidebar = document.querySelector('.cart-sidebar');
+                const overlay = document.querySelector('.overlay');
+                cartOpen = !cartOpen;
+                
+                cartSidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+            
+            function checkout() {
+                if (cart.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+                
+                alert('Thank you for your purchase! Total: $' + document.getElementById('cart-total').textContent);
+                cart = [];
+                updateCart();
+                toggleCart();
+            }
+            </script>
+             
+        
+
+
+    </body>
+</html>
